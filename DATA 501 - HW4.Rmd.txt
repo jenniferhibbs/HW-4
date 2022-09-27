@@ -1,0 +1,138 @@
+---
+title: "DATA 501 Foundations of Data Sci Using R - HW4"
+author: "Jennifer Hibbs"
+date: "Sept 27, 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+**INSTRUCTIONS:** Set your working directory using `setwd()`, load the tidyverse using `library(tidyverse)`, and answer the following questions.
+```{r}
+library(tidyverse)
+```
+
+
+# DATASET: Billboard (preloaded with the Tidyverse)
+
+This dataset contains song rankings for the Billboard 100 in 2000.  (Some may have debuted earlier than 2000 but were still on the Billboard 100 at some point in 2000.)  Run `?billboard` to get more details on this dataset.
+
+## QUESTION 1
+
+Is this dataset in long or wide format?  Why?
+
+```{r}
+?billboard
+```
+
+
+ANSWER: [It's wide because there is a column for every week and another for the rank of the song in each week. Which tells me that the data wasn't stacked]
+
+
+## QUESTION 2
+
+Use the `gather()` command to stack the week columns.  Name the label column "week" and the ranking column "ranking".  **Hint:** rather than listing all of the week columns, consider using the following shorthand-- wk1:wk76.
+
+```{r}
+# your code here
+
+billboard_long = gather(billboard, key = "week", value = "ranking", wk1:wk76)
+```
+
+ANSWER: [gather(billboard, key = "week", value = "ranking", wk1:wk76)]
+
+
+### QUESTION 3
+
+Using your preferred method (ex. `gsub`), extract the week number from the week column, and convert it to numeric.  Replace the "week" column in the dataset with the numeric column you just created.
+
+```{r}
+# your code here
+billboard_long$week <- gsub("wk", "", billboard_long$week)
+```
+
+### QUESTION 4
+
+Which tracks debuted at #1 in their first week (if any)?  
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+### QUESTION 5
+
+Use the `filter` function to determine which tracks hit #1 in 2000?  **Note:** some songs can hit #1 for multiple weeks, so make sure you remove duplicate song names using `unique()`.
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+### QUESTION 6
+
+Which track stayed at #1 the longest?  (Doesn't have to be consecutive.)
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+### QUESTION 7
+
+Which song entered the Billboard 100 the earliest?  Use `arrange()` to answer this question.
+
+```{r}
+# your code here
+
+```
+### QUESTION 8
+
+Which song entered the Billboard 100 the latest?  Use `arrange()` to answer this question.
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+### QUESTION 9
+
+Which track had the widest range in Billboard rank?  Use `summarize()` and `group_by()` to answer this question.  Hint: You may want to create columns that contain the minimum rank and the maximum rank for each track.  Then create a column that calculates the absolute difference.
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+### QUESTION 10
+
+Which track(s) never peaked above #95?  **Hint:** Think critically about how rankings work (lower=better)...
+
+```{r}
+# your code here
+
+```
+
+ANSWER: [FILL IN]
+
+
+***
+
+## INSTRUCTIONS FOR SUBMITTING:
+
+Save this file as LASTNAME_FIRSTNAME_DATA501_HW4.Rmd.  Then click on "Knit" at the top of this page and create a pdf.  Name the pdf using the following convention: 
+LASTNAME_FIRSTNAME_DATA501_HW4.pdf.  Submit the pdf in WISE.
